@@ -2,6 +2,7 @@ package main
 
 import (
 	"app/handlers"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -10,9 +11,9 @@ func main() {
 
 	app := fiber.New()
 
-	app.Get("/tb-percentage", handlers.TBpercentageHandler)
-	app.Get("/gcl-percentage", handlers.GCLpercentageHandler)
+	app.Get("/:project/percentage", handlers.TBpercentageHandler)
+	app.Get("/:project/tasks", handlers.GetTasks)
 
-	app.Listen(":3000")
+	log.Fatal(app.Listen(":3000"))
 
 }

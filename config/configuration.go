@@ -9,6 +9,7 @@ import (
 type JiraVariables struct {
 	Username string
 	Password string
+	Url      string
 }
 
 type SConfig struct {
@@ -28,6 +29,7 @@ func init() {
 		Jira: JiraVariables{
 			Username: getEnvVariable("JIRA_USERNAME"),
 			Password: getEnvVariable("JIRA_PASSWORD"),
+			Url:      getEnvVariable("JIRA_URL"),
 		},
 	}
 }

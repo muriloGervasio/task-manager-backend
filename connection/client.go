@@ -15,5 +15,5 @@ func init() {
 		Password: config.Config.Jira.Password,
 	}
 
-	Client, _ = jira.NewClient(tp.Client(), "https://graodireto.atlassian.net/")
+	Client, _ = jira.NewClient(tp.Client(), config.Config.Jira.Url)
 }

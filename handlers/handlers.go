@@ -17,5 +17,7 @@ func TBpercentageHandler(c *fiber.Ctx) error {
 }
 
 func GetTasks(c *fiber.Ctx) error {
-	return c.JSON(useCase.GetTdTasks(*connection.Client, c.Params("project")))
+	tasks := useCase.GetTdTasks(*connection.Client, c.Params("project"))
+
+	return c.JSON(tasks)
 }

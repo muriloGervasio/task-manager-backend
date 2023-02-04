@@ -24,24 +24,32 @@ func GetTdTasks(client jira.Client, project string) []Task {
 
 	tasks := make([]Task, 0)
 
-	r, _ := regexp.Compile("(PLN-)([0-9])+")
+	r, error := regexp.Compile("(PLN-)([0-9])+")
+
+	if error != nil {
+		panic("regex have failed")
+	}
 
 	for i := 0; i < len(chunk); i++ {
 		item := chunk[i]
 
-		stringfied, error := json.Marshal(item)
+		stringified, error := json.Marshal(item)
 
 		if error != nil {
-			panic("not stringfied")
+			panic("not stringified")
 		}
 
-		plannerSearch := r.FindAllSubmatch(stringfied, len(stringfied))
+		plannerSearch := r.FindAllSubmatch(stringified, len(stringified))
 
 		var plannerCode int = 0
 
 		if len(plannerSearch) > 0 && len(plannerSearch[0]) > 0 {
 
-			taskValue, _ := strconv.Atoi(string(plannerSearch[0][2]))
+			taskValue, error := strconv.Atoi(string(plannerSearch[0][2]))
+
+			if error != nil {
+				panic("error on converting string to int")
+			}
 
 			plannerCode = taskValue
 		}

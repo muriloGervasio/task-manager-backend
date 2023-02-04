@@ -18,5 +18,4 @@ func main() {
 	app.Get("/:project/tasks", handlers.GetTasks)
 
 	log.Fatal(app.Listen(":8080"))
-
 }

@@ -18,7 +18,7 @@ type Task struct {
 }
 
 func GetTdTasks(client jira.Client, project string) []Task {
-	jql := fmt.Sprintf("project = \"%s\" and cf[10020] in openSprints() and updatedDate > startOfDay(-1)", project)
+	jql := fmt.Sprintf("project = \"%s\" and cf[10020] in openSprints() and updatedDate > startOfDay(-7)", project)
 
 	chunk, _, _ := client.Issue.Search(jql, &jira.SearchOptions{})
 

@@ -22,6 +22,9 @@ func main() {
 	})
 	app.Get("/:project/percentage", handlers.TBpercentageHandler)
 	app.Get("/:project/tasks", handlers.GetTasks)
+	app.Get("/error", func(c *fiber.Ctx) error {
+		return fiber.NewError(fiber.StatusNotFound, "not found")
+	})
 
 	log.Fatal(app.Listen(":8080"))
 }

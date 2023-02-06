@@ -12,6 +12,7 @@ import (
 type Task struct {
 	Key         string `json:"key"`
 	Name        string `json:"name"`
+	Description string `json:"description"`
 	PlannerCode int    `json:"plannerCode"`
 	Url         string `json:"url"`
 	Stage       string `json:"status"`
@@ -55,7 +56,8 @@ func GetTdTasks(client jira.Client, project string) []Task {
 
 		tasks = append(tasks, Task{
 			Key:         item.Key,
-			Name:        item.Fields.Description,
+			Name:        item.Fields.Summary,
+			Description: item.Fields.Description,
 			PlannerCode: plannerCode,
 			Url:         item.Self,
 			Stage:       item.Fields.Status.StatusCategory.Name,

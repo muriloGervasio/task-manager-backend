@@ -14,16 +14,13 @@ type JiraVariables struct {
 
 type SConfig struct {
 	Jira JiraVariables
+	Port string
 }
 
 var Config SConfig
 
 func init() {
-	err := godotenv.Load(".env")
-
-	if err != nil {
-		panic("no env file")
-	}
+	godotenv.Load(".env")
 
 	Config = SConfig{
 		Jira: JiraVariables{
@@ -31,6 +28,7 @@ func init() {
 			Password: getEnvVariable("JIRA_PASSWORD"),
 			Url:      getEnvVariable("JIRA_URL"),
 		},
+		Port: getEnvVariable("PORT"),
 	}
 }
 

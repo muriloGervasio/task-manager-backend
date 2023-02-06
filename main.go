@@ -1,7 +1,9 @@
 package main
 
 import (
+	"app/config"
 	"app/handlers"
+	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -26,5 +28,5 @@ func main() {
 		return fiber.NewError(fiber.StatusNotFound, "not found")
 	})
 
-	log.Fatal(app.Listen(":8080"))
+	log.Fatal(app.Listen(fmt.Sprintf(":%s", config.Config.Port)))
 }

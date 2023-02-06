@@ -4,6 +4,8 @@ RUN apk add --no-cache git
 
 WORKDIR /app/task-manager
 
+ENV PORT=$port
+
 COPY go.mod .
 COPY go.sum .
 
@@ -13,6 +15,6 @@ COPY . .
 
 RUN go build -o ./out/task-manager .
 
-EXPOSE 8080
+EXPOSE $PORT
 
 CMD ["./out/task-manager"]

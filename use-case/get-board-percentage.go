@@ -16,10 +16,9 @@ func GetActiveTaskPercentage(client jira.Client, project string) float64 {
 	total, done := 0, 0
 
 	r, _ := regexp.Compile("(customfield_10016\":)([0-9]+)")
-	for i := 0; i < len(chunk); i++ {
-		task := chunk[i]
+	for _, task := range chunk {
 
-		result, _ := json.Marshal(chunk[i])
+		result, _ := json.Marshal(task)
 
 		mat := r.FindAllSubmatch(result, len(result))
 

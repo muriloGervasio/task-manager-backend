@@ -24,14 +24,13 @@ func GetTdTasks(client jira.Client, project string) []Task {
 
 	tasks := make([]Task, 0)
 
-	r, error := regexp.Compile("(PLN-)([0-9])+")
+	r, error := regexp.Compile("(PLN-)([0-9]+)")
 
 	if error != nil {
 		panic("regex have failed")
 	}
 
-	for i := 0; i < len(chunk); i++ {
-		item := chunk[i]
+	for _, item := range chunk {
 
 		stringified, error := json.Marshal(item)
 

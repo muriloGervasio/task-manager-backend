@@ -39,5 +39,5 @@ func GetActiveTaskPercentage(client jira.Client, project string) float64 {
 
 	var percentage float64 = float64(done) / float64(total)
 
-	return math.Round(percentage)
+	return (math.Round(100 * percentage)) / 100
 }

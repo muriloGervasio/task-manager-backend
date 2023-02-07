@@ -3,6 +3,7 @@ package useCase
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"regexp"
 	"strconv"
 
@@ -27,7 +28,9 @@ func GetActiveTaskPercentage(client jira.Client, project string) float64 {
 			taskValue, _ := strconv.Atoi(string(mat[0][2]))
 			total += taskValue
 
-			if task.Fields.Status.StatusCategory.ID == 3 {
+			fmt.Println(task.Fields.Status.StatusCategory)
+
+			if task.Fields.Status.StatusCategory.ID == 3 || task.Fields.Status.StatusCategory.ID != 2 {
 				done += taskValue
 			}
 		}
@@ -36,5 +39,5 @@ func GetActiveTaskPercentage(client jira.Client, project string) float64 {
 
 	var percentage float64 = float64(done) / float64(total)
 
-	return percentage
+	return math.Round(percentage)
 }

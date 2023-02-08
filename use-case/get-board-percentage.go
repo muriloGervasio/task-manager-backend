@@ -30,7 +30,7 @@ func GetActiveTaskPercentage(client jira.Client, project string) float64 {
 
 			fmt.Println(task.Fields.Status.StatusCategory)
 
-			if task.Fields.Status.StatusCategory.ID == 3 || task.Fields.Status.StatusCategory.ID != 2 {
+			if task.Fields.Status.StatusCategory.ID == 3 {
 				done += taskValue
 			}
 		}
